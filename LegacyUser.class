@@ -1,0 +1,102 @@
+// Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).
+public class LegacyUser {
+   private int userId;
+   private String username;
+   private String passwordHash;
+   private String email;
+   private String userRole;
+
+   public LegacyUser() {
+   }
+
+   public LegacyUser(int var1, String var2, String var3, String var4, String var5) {
+      this.setUserId(var1);
+      this.setUsername(var2);
+      this.setPasswordHash(var3);
+      this.setEmail(var4);
+      this.setUserRole(var5);
+   }
+
+   public LegacyUser(String var1, String var2, String var3, String var4) {
+      this.setUsername(var1);
+      this.setPasswordHash(var2);
+      this.setEmail(var3);
+      this.setUserRole(var4);
+   }
+
+   public LegacyUser(int var1, String var2, String var3, String var4) {
+      this.setUserId(var1);
+      this.setUsername(var2);
+      this.setEmail(var3);
+      this.setUserRole(var4);
+   }
+
+   public int getUserId() {
+      return this.userId;
+   }
+
+   public String getUsername() {
+      return this.username;
+   }
+
+   public String getPasswordHash() {
+      return this.passwordHash;
+   }
+
+   public String getEmail() {
+      return this.email;
+   }
+
+   public String getUserRole() {
+      return this.userRole;
+   }
+
+   public void setUserId(int var1) {
+      if (var1 > 0) {
+         this.userId = var1;
+      } else {
+         System.err.println("INVALID USER ID: ID must be positive.");
+      }
+
+   }
+
+   public void setUsername(String var1) {
+      if (var1 != null && !var1.trim().isEmpty()) {
+         this.username = var1.trim();
+      } else {
+         System.err.println("INVALID USERNAME: Username cannot be empty.");
+      }
+
+   }
+
+   public void setPasswordHash(String var1) {
+      if (var1 != null && !var1.trim().isEmpty()) {
+         this.passwordHash = var1;
+      } else {
+         System.err.println("INVALID PASSWORD HASH: Hash cannot be empty.");
+      }
+
+   }
+
+   public void setEmail(String var1) {
+      if (var1 != null && var1.trim().matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$")) {
+         this.email = var1.trim();
+      } else {
+         System.err.println("INVALID EMAIL: Update rejected.");
+      }
+
+   }
+
+   public void setUserRole(String var1) {
+      if (var1 != null && !var1.trim().isEmpty()) {
+         this.userRole = var1.trim();
+      } else {
+         System.err.println("INVALID USER ROLE: Role cannot be empty.");
+      }
+
+   }
+
+   public String toString() {
+      return "User [ID=" + this.userId + ", Username='" + this.username + "', Email='" + this.email + "', Role='" + this.userRole + "']";
+   }
+}

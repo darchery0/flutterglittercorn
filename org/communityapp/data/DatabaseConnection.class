@@ -1,0 +1,26 @@
+// Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).
+package org.communityapp.data;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DatabaseConnection {
+   private static final String DB_URL = "jdbc:sqlite:community_app.db";
+
+   public DatabaseConnection() {
+   }
+
+   public static Connection getConnection() {
+      Connection var0 = null;
+
+      try {
+         var0 = DriverManager.getConnection("jdbc:sqlite:community_app.db");
+         System.out.println("✅ JDBC Connection Successful!");
+      } catch (SQLException var2) {
+         System.err.println("❌ Database Connection Failed: " + var2.getMessage());
+      }
+
+      return var0;
+   }
+}

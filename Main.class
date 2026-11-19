@@ -1,0 +1,23 @@
+// Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).
+public class Main {
+   public Main() {
+   }
+
+   public static void main(String[] var0) {
+      System.out.println("=== USERS FROM DATABASE ===");
+
+      for(LegacyUser var3 : UserDAO.getAllUsers()) {
+         System.out.println(var3);
+      }
+
+      LegacyUser var5 = new LegacyUser(101, "london", "secure_hash_123", "london@email.com", "member");
+      LegacyUser var6 = new LegacyUser("alex_dev", "hash_secure_991823", "alex@tech.org", "admin");
+      LegacyUser var4 = new LegacyUser();
+      System.out.println("--- Existing User ---");
+      System.out.println(var5);
+      System.out.println("\n--- New Signup ---");
+      System.out.println(var6);
+      System.out.println("\n--- Empty User ---");
+      System.out.println(var4);
+   }
+}
