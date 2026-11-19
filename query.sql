@@ -1,6 +1,15 @@
 .mode box
 .header on
 
+CREATE TABLE IF NOT EXISTS users (
+    user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL,
+    password_hash TEXT NOT NULL,
+    user_role TEXT NOT NULL
+);
+
+INSERT INTO users (username, password_hash, user_role)
+VALUES ('admin', 'secure_hash_123', 'admin');
 -- 1. Create Table
 CREATE TABLE IF NOT EXISTS legacy_users (
     user_id INT PRIMARY KEY,

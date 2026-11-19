@@ -1,98 +1,92 @@
-// Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).
-// Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import org.communityapp.data.DatabaseConnection;
+public class LegacyUser {
+    private int id;
+    private String username;
+    private String passwordHash;
+    private String email;
+    private String role;
 
-public class UserDAO {
-   public UserDAO() {
-   }
+    // 1. Default constructor (Main.java - Scenario C)
+    public LegacyUser() {
+        this.id = 0;
+        this.username = "guest";
+        this.passwordHash = "";
+        this.email = "none";
+        this.role = "guest";
+    }
 
-   public static ArrayList<LegacyUser> getAllUsers() {
-      ArrayList var0 = new ArrayList();
-      String var1 = "SELECT * FROM users";
+    // 2. Database retrieval constructor without password (UserDAO.java)
+    public LegacyUser(int id, String username, String email, String role) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.role = role;
+    }
 
-      try {
-         Connection var2 = DatabaseConnection.getConnection();
+    // 3. New signup constructor without ID (Main.java - Scenario B)
+    public LegacyUser(String username, String passwordHash, String email, String role) {
+        this.username = username;
+        this.passwordHash = passwordHash;
+        this.email = email;
+        this.role = role;
+    }
 
-         ArrayList var14;
-         label109: {
-            try {
-               if (var2 == null) {
-                  var14 = var0;
-                  break label109;
-               }
+    // 4. Full constructor (Main.java - Scenario A)
+    public LegacyUser(int id, String username, String passwordHash, String email, String role) {
+        this.id = id;
+        this.username = username;
+        this.passwordHash = passwordHash;
+        this.email = email;
+        this.role = role;
+    }
 
-               Statement var3 = var2.createStatement();
+    // Getters and Setters
+    public int getId() {
+        return id;
+    }
 
-               try {
-                  ResultSet var4 = var3.executeQuery(var1);
+    public void setId(int id) {
+        this.id = id;
+    }
 
-                  try {
-                     while(var4.next()) {
-                        LegacyUser var5 = new LegacyUser(var4.getInt("id"), var4.getString("username"), var4.getString("email"), var4.getString("role"));
-                        var0.add(var5);
-                     }
-                  } catch (Throwable var10) {
-                     if (var4 != null) {
-                        try {
-                           var4.close();
-                        } catch (Throwable var9) {
-                           var10.addSuppressed(var9);
-                        }
-                     }
+    public String getUsername() {
+        return username;
+    }
 
-                     throw var10;
-                  }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-                  if (var4 != null) {
-                     var4.close();
-                  }
-               } catch (Throwable var11) {
-                  if (var3 != null) {
-                     try {
-                        var3.close();
-                     } catch (Throwable var8) {
-                        var11.addSuppressed(var8);
-                     }
-                  }
+    public String getPasswordHash() {
+        return passwordHash;
+    }
 
-                  throw var11;
-               }
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
 
-               if (var3 != null) {
-                  var3.close();
-               }
-            } catch (Throwable var12) {
-               if (var2 != null) {
-                  try {
-                     var2.close();
-                  } catch (Throwable var7) {
-                     var12.addSuppressed(var7);
-                  }
-               }
+    public String getEmail() {
+        return email;
+    }
 
-               throw var12;
-            }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-            if (var2 != null) {
-               var2.close();
-            }
+    public String getRole() {
+        return role;
+    }
 
-            return var0;
-         }
+    public void setRole(String role) {
+        this.role = role;
+    }
 
-         if (var2 != null) {
-            var2.close();
-         }
-
-         return var14;
-      } catch (SQLException var13) {
-         System.err.println("Error retrieving users: " + var13.getMessage());
-         return var0;
-      }
-   }
+    @Override
+    public String toString() {
+        return "LegacyUser{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }
